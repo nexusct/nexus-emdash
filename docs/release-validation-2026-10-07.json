@@ -190,5 +190,134 @@
     },
     "production_artifact_restored": true,
     "production_artifact_config_sha256": "04d5b39f21d280b7f882f66baa198535b88448f7fbc42cd97673bccdcd5cf342"
+  },
+  "refresh": {
+    "checked_at": "2026-10-07T21:02:33.944382+00:00",
+    "source_head": "2862c0408e0050da0c792b1bbfcc4d81a07ec592",
+    "lockfile_sha256": "bb77f76431d338a3253d6157eedfb0dcc2059312b5c18baa9b46a096268fe77b",
+    "checks": [
+      {
+        "name": "tests",
+        "command": [
+          "npm",
+          "test"
+        ],
+        "exit_code": 0,
+        "tests_passed": 5,
+        "tests_failed": 0
+      },
+      {
+        "name": "typecheck",
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "exit_code": 0,
+        "files": 17,
+        "errors": 0,
+        "warnings": 0,
+        "hints": 0
+      },
+      {
+        "name": "audit",
+        "command": [
+          "npm",
+          "audit",
+          "--json"
+        ],
+        "exit_code": 0,
+        "vulnerabilities": 0
+      },
+      {
+        "name": "dependency-tree",
+        "command": [
+          "npm",
+          "ls",
+          "--all"
+        ],
+        "started_at": "2026-10-07T21:01:10.959732+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/dependency-tree.log",
+        "sha256": "64cc1fee9ada061ab4bbef97534011d53277312132dc8589a1bf5458a63821b5"
+      },
+      {
+        "name": "seed",
+        "command": [
+          "npx",
+          "emdash",
+          "seed",
+          "seed/seed.json",
+          "--validate"
+        ],
+        "started_at": "2026-10-07T21:01:11.630896+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/seed.log",
+        "sha256": "73f37373addea8459e277c45c17ea1381fff8743a6926cd714150cb9e93a1b03"
+      },
+      {
+        "name": "staging-build",
+        "command": [
+          "npm",
+          "run",
+          "build:staging"
+        ],
+        "started_at": "2026-10-07T21:01:12.657571+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/staging-build.log",
+        "sha256": "2259da249fc9b5d0156d99a5f7e4239d969d521ef8080eb75226c647be9ddb68"
+      },
+      {
+        "name": "staging-package",
+        "command": [
+          "npx",
+          "wrangler",
+          "deploy",
+          "--env",
+          "staging",
+          "--dry-run"
+        ],
+        "started_at": "2026-10-07T21:01:20.730654+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/staging-package.log",
+        "sha256": "e98db4ea0b83e989f4b35cd3232604d1ddc42af4bb1d32d78f9e92a04543bfe5"
+      },
+      {
+        "name": "production-build",
+        "command": [
+          "npm",
+          "run",
+          "build"
+        ],
+        "started_at": "2026-10-07T21:01:22.452871+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/production-build.log",
+        "sha256": "2c1b1455ecbf1ec667143fd7960560a5ec7cee3da01937e41494e30cb62c8771"
+      },
+      {
+        "name": "production-package",
+        "command": [
+          "npx",
+          "wrangler",
+          "deploy",
+          "--dry-run"
+        ],
+        "started_at": "2026-10-07T21:01:33.911236+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/production-package.log",
+        "sha256": "dbf727c3aa12dedb792c7d603694d7e92b9963c87c200ba99dd1b0a34c036847"
+      }
+    ],
+    "github_checks_on_source_head": {
+      "Kilo Code Reviewer": "SUCCESS",
+      "Socket Security: Project Report": "SUCCESS",
+      "Socket Security: Pull Request Alerts": "SUCCESS"
+    },
+    "dependency_pins_changed": false,
+    "build_advisory": "Existing large client-chunk warning; builds and packaging pass. No warning suppression added.",
+    "production_artifact_restored": true,
+    "cloudflare_authentication": "Browser signed in; Wrangler device authorization awaits approval",
+    "cloudflare_remote_validation": "NOT RUN",
+    "production_deployed": false
   }
 }

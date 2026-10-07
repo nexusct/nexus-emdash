@@ -29,6 +29,21 @@ npx wrangler d1 info nexus-emdash-db
 npx wrangler d1 time-travel info nexus-emdash-db --json
 ```
 
+If the browser callback times out, finish signing in at
+`https://dash.cloudflare.com/login` before starting a fresh device attempt:
+
+```bash
+npx wrangler login --use-keyring --device --browser=false --scopes account:read user:read workers:write workers_kv:write workers_scripts:write workers_tail:read d1:write
+```
+
+Open the verification URL printed by Wrangler, enter the **fresh** terminal
+code in the page's code field, continue, and review the displayed permissions.
+The code expires after five minutes; a signed-in dashboard alone does not
+authenticate Wrangler. Do not reuse an expired code. Confirm the terminal reports
+successful authorization and `wrangler whoami` identifies the intended account
+before inventorying resources. `--use-keyring` keeps the credential in the OS
+keychain, outside the checkout.
+
 Confirm the intended Nexus account and production D1 UUID
 `2bc4951e-66c9-4d48-b4fa-ee7681750451`. Record the deployed version and a currently
 restorable recovery bookmark privately. A Time Travel bookmark is a recovery

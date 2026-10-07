@@ -71,6 +71,23 @@ staging Worker/D1/R2 names, with public entrypoints disabled. See the
 authenticated account; browser OAuth timed out. Resource existence, migrations,
 remote startup, access controls and real plugin delivery remain unverified.
 
+### Afternoon check refresh
+
+The existing dependency pins were rechecked without changing the graph. Astro
+7.3.6 and Cloudflare adapter 14.3.4 remain current. All five tests pass; Astro
+reports 17 files with no errors, warnings or hints; the audit reports zero
+vulnerabilities. The dependency graph, seed validation, staging and production
+builds, and both deployment dry-runs also pass. The production build remains the
+default artifact. The existing client chunk-size advisory remains visible.
+Fresh command results and available log hashes are in the receipt's `refresh`
+section, with logs under `/tmp/nexus-emdash-refresh-20261007/`.
+
+Kilo and both Socket checks are successful on `2862c04`. Browser account sign-in
+is complete, but the fresh Wrangler device grant still awaits approval; no
+Cloudflare resource inventory, provisioning or deployment has been performed.
+The runbook now documents the device fallback and the required terminal
+confirmation so browser sign-in is not mistaken for command-line access.
+
 ## Socket and supply chain
 
 Kumo remains locked to 2.6.0 because the current plugin/platform peers require it. [The detailed review](kumo-security-review-2026-10-07.md) checks registry integrity/signature, publication identity, upstream source maps and static behavior. Production minification and bundled Shiki WebAssembly plausibly explain Socket's obfuscation warning. Exact flagged-file attribution was unavailable, so this is not a confirmed false positive or an absence-of-malware guarantee.
