@@ -1,6 +1,7 @@
 node_modules
 dist
 .astro
+.emdash/migrations.json
 uploads
 data.db
 .wrangler
@@ -108,3 +109,7 @@ tmp/
 temp/
 coverage/
 .nyc_output/
+
+# Local Cloudflare Worker secrets
+.dev.vars
+.dev.vars.*

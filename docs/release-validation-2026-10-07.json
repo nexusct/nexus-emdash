@@ -1,0 +1,104 @@
+{
+  "review_date": "2026-10-07",
+  "node": "v22.22.3",
+  "npm": "11.17.0",
+  "checks": [
+    {
+      "check": "clean_install",
+      "command": "npm ci --strict-peer-deps",
+      "exit_code": 0,
+      "elapsed_seconds": 29.83,
+      "log_sha256": "cfd24b0806d99a7ded3386b65284ba23de92b19920006c82dabee9d4a7f473a0"
+    },
+    {
+      "check": "dependency_graph",
+      "command": "npm ls --all",
+      "exit_code": 0,
+      "elapsed_seconds": 0.74,
+      "log_sha256": "64cc1fee9ada061ab4bbef97534011d53277312132dc8589a1bf5458a63821b5"
+    },
+    {
+      "check": "tests",
+      "command": "npm test",
+      "exit_code": 0,
+      "elapsed_seconds": 2.19,
+      "log_sha256": "15574a9121d00fcdaafd785d640cd5c138343df4d4dec2130a4c6b07fdb634dd"
+    },
+    {
+      "check": "seed",
+      "command": "npm exec emdash -- seed seed/seed.json --validate",
+      "exit_code": 0,
+      "elapsed_seconds": 1.27,
+      "log_sha256": "9516e0cee1425e2bd48e223ef6c7e6a07d469d97f9d6b5056ba4f9e6f5ec7e57"
+    },
+    {
+      "check": "typecheck",
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "elapsed_seconds": 15.74,
+      "log_sha256": "7b5c83e58314d7345aa15d50470a55f81658f35620f8c618015258a005b01c6b"
+    },
+    {
+      "check": "build",
+      "command": "npm run build",
+      "exit_code": 0,
+      "elapsed_seconds": 12.83,
+      "log_sha256": "f8c3c796f1a8358135b40e07cf1267655296aa8ed28d9b75f34e7dce257d1bca"
+    },
+    {
+      "check": "audit",
+      "command": "npm audit --json",
+      "exit_code": 0,
+      "elapsed_seconds": 0.81,
+      "log_sha256": "6dab57baaf12499b5edbed625735af5904dc4c1d70fb47ef8e2da1e7acbbc394"
+    },
+    {
+      "check": "signatures",
+      "command": "npm audit signatures",
+      "exit_code": 0,
+      "elapsed_seconds": 5.59,
+      "log_sha256": "cd936019617415c01363329243f018592b1cd2644204cd3cc77b58a368651803"
+    },
+    {
+      "check": "wrangler_dry_run",
+      "command": "npm exec wrangler -- deploy --dry-run",
+      "exit_code": 0,
+      "elapsed_seconds": 1.9,
+      "log_sha256": "539f71bd0490989f4f454b02ef74e1ca63d71afa243414b7c9e0e039350072e7"
+    },
+    {
+      "check": "staged_secret_scan",
+      "command": "gitleaks git --pre-commit --staged --redact --no-banner",
+      "exit_code": 0,
+      "log_sha256": "b024940d905e9d605cbcd05d2acf7e99aaff3b5ea70809be66b30bac7654cdd9"
+    }
+  ],
+  "lockfile_sha256": "bb77f76431d338a3253d6157eedfb0dcc2059312b5c18baa9b46a096268fe77b",
+  "audit_vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "local_preview": {
+    "home_status": 200,
+    "admin_redirect_target": "/_emdash/admin/setup",
+    "admin_setup_status": 200,
+    "limit": "No admin session or real Cloudflare service was validated."
+  },
+  "production_deployed": false,
+  "optional_diagnostics": [
+    {
+      "command": "npm exec emdash -- doctor",
+      "exit_code": 1,
+      "reason": "Doctor defaults to local data.db; this Cloudflare D1 project has no standalone SQLite file. Remote D1 health was not validated."
+    },
+    {
+      "command": "gitleaks dir . --redact",
+      "exit_code": 1,
+      "reason": "Generated ignored dist/server artifact contains an Astro per-build server-island encryption key. It is not staged or committed; the staged-source scan passed without suppression."
+    }
+  ]
+}
