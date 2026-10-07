@@ -100,5 +100,14 @@
       "exit_code": 1,
       "reason": "Generated ignored dist/server artifact contains an Astro per-build server-island encryption key. It is not staged or committed; the staged-source scan passed without suppression."
     }
-  ]
+  ],
+  "github": {
+    "repository_actions_enabled": false,
+    "repository_ci_ran": false,
+    "source_commit": "7b2838130c848e6c7f47ecbe695cf78ad40f2945",
+    "socket_project_report": "SUCCESS",
+    "socket_pull_request_alerts": "SUCCESS",
+    "overlapping_pr_4": "CLOSED",
+    "main_updated": false
+  }
 }

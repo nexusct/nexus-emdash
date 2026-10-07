@@ -48,7 +48,7 @@ The repository had no test script or tests before this update. Four Node tests w
 | `wrangler deploy --dry-run` | PASS; upload prepared, no remote deployment |
 | Local built Worker preview | Homepage HTTP 200; admin HTTP 302 to setup, setup HTTP 200; webhook sandbox loaded locally |
 
-The [machine-readable receipt](release-validation-2026-10-07.json) records command exits, timings and log hashes, bound to the tested lockfile hash. Full local logs are at `/tmp/nexus-emdash-validation-20261007/`. The GitHub workflow repeats installation, graph, plugin, seed, diagnostics, build, audit and packaging checks on pull requests.
+The [machine-readable receipt](release-validation-2026-10-07.json) records command exits, timings and log hashes, bound to the tested lockfile hash. Full local logs are at `/tmp/nexus-emdash-validation-20261007/`. The committed GitHub workflow covers installation, graph, plugin, seed, diagnostics, build, audit and packaging checks. GitHub's repository Actions setting is currently disabled, so this workflow has not run remotely. Local results must not be represented as a GitHub CI run.
 
 Additional diagnostic: `emdash doctor` exited 1 because its default standalone SQLite `data.db` does not exist in this D1 project. It was not treated as a successful D1 health check or worked around with a dummy database. Local preview uses isolated local D1/R2 resources, not the configured remote account.
 
@@ -56,7 +56,7 @@ Additional diagnostic: `emdash doctor` exited 1 because its default standalone S
 
 Kumo remains locked to 2.6.0 because the current plugin/platform peers require it. [The detailed review](kumo-security-review-2026-10-07.md) checks registry integrity/signature, publication identity, upstream source maps and static behavior. Production minification and bundled Shiki WebAssembly plausibly explain Socket's obfuscation warning. Exact flagged-file attribution was unavailable, so this is not a confirmed false positive or an absence-of-malware guarantee.
 
-No Socket ignore comment, ignore-all policy or suppression was added. Review the fresh PR scan for any new findings. The graph-wide npm attestation verification supplements the package-specific investigation. Several upstream auth packages emit deprecation notices; deprecation alone is not an audit vulnerability, and replacements remain an upstream maintenance concern.
+No Socket ignore comment, ignore-all policy or suppression was added. Fresh Socket Project Report and Pull Request Alerts checks passed on source commit `7b2838130c848e6c7f47ecbe695cf78ad40f2945`; Socket updated its [alert comment](https://github.com/nexusct/nexus-emdash/pull/3#issuecomment-5389105939) to report all alerts resolved. This is scanner status, not proof of absence of malicious behavior. Review any later scan on the final PR head. The graph-wide npm attestation verification supplements the package-specific investigation. Several upstream auth packages emit deprecation notices; deprecation alone is not an audit vulnerability, and replacements remain an upstream maintenance concern.
 
 ## Cloudflare-only production gates
 
