@@ -27,4 +27,29 @@
 			"binding": "LOADER",
 		},
 	],
+	"env": {
+		"staging": {
+			"name": "nexus-emdash-staging",
+			// Keep the first deployment private until Cloudflare Access is configured.
+			"workers_dev": false,
+			"preview_urls": false,
+			"routes": [],
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "nexus-emdash-staging-db",
+					// Add only the isolated staging database ID after provisioning.
+				},
+			],
+			"r2_buckets": [
+				{
+					"binding": "MEDIA",
+					"bucket_name": "nexus-emdash-staging-media",
+					"preview_bucket_name": "nexus-emdash-staging-media",
+				},
+			],
+			"kv_namespaces": [{ "binding": "SESSION" }],
+			"worker_loaders": [{ "binding": "LOADER" }],
+		},
+	},
 }

@@ -39,7 +39,7 @@ The repository had no test script or tests before this update. Four Node tests w
 | --- | --- |
 | `npm ci --strict-peer-deps` | PASS; no forced or legacy peer resolution |
 | `npm ls --all` | PASS; platform-specific optional binaries may be absent as expected |
-| `npm test` | PASS; 4 tests, 0 failures |
+| `npm test` | PASS; 5 tests (4 plugin workflows + staging isolation), 0 failures |
 | `emdash seed seed/seed.json --validate` | PASS; no widget option warnings |
 | `npm run typecheck` | PASS; 17 files, 0 errors, 0 warnings, 0 hints |
 | `npm run build` | PASS; server, admin and sandbox assets compiled; large client-chunk advisory remains |
@@ -51,6 +51,25 @@ The repository had no test script or tests before this update. Four Node tests w
 The [machine-readable receipt](release-validation-2026-10-07.json) records command exits, timings and log hashes, bound to the tested lockfile hash. Full local logs are at `/tmp/nexus-emdash-validation-20261007/`. The committed GitHub workflow covers installation, graph, plugin, seed, diagnostics, build, audit and packaging checks. GitHub's repository Actions setting is currently disabled, so this workflow has not run remotely. Local results must not be represented as a GitHub CI run.
 
 Additional diagnostic: `emdash doctor` exited 1 because its default standalone SQLite `data.db` does not exist in this D1 project. It was not treated as a successful D1 health check or worked around with a dummy database. Local preview uses isolated local D1/R2 resources, not the configured remote account.
+
+### Continuation: review and staging preparation
+
+The October 7 Kilo review completed with a successful check but added seven
+conditional compatibility comments. All seven were checked against the installed
+package source and existing tests/build evidence, answered in their review
+threads and resolved. The three older plugin/environment/formatting threads were
+also answered and resolved. The default webhook export is a frozen descriptor;
+seed persistence reads `widget.props`; the comments export exists; nested Undici
+8.11.2 requires Node >=22.19.0. A direct native Sharp 0.35.5 create/resize/PNG
+operation also passed. This is evidence-based thread resolution by the PR
+author, not independent human release approval.
+
+An isolated `staging` environment and a fifth test now protect the production
+storage boundary. The staging build and Wrangler dry-run pass and select the
+staging Worker/D1/R2 names, with public entrypoints disabled. See the
+[staging runbook](cloudflare-staging-2026-10-07.md). Wrangler reported no
+authenticated account; browser OAuth timed out. Resource existence, migrations,
+remote startup, access controls and real plugin delivery remain unverified.
 
 ## Socket and supply chain
 
@@ -66,4 +85,6 @@ No Socket ignore comment, ignore-all policy or suppression was added. Fresh Sock
 4. **Plugin workflows:** submit and retrieve a real staging form; confirm native-plugin activation/storage, then trigger a sandboxed webhook and observe actual destination delivery, retries and logs. Test with a controlled destination, not customer endpoints. Forms cleanup/digests and scheduled publishing also need cron wiring: this repository currently has no Cron Trigger or `scheduled` handler, so those optional background capabilities are unverified and must not be represented as functioning. [Cloudflare deployment wiring](https://docs.emdashcms.com/deployment/cloudflare/).
 5. **Promotion decision:** review the current PR checks and fresh Socket findings, retain the tested artifact/migration manifest, and promote only after the preceding evidence exists. No merge, production promotion, account provisioning or irreversible source-system action was performed in this task.
 
-Next release action: provision or select an isolated Cloudflare staging environment and its D1 recovery copy, then validate this PR's exact artifact there.
+Next release action: complete Cloudflare sign-in, inventory the intended account,
+then use the prepared isolated staging environment and a representative D1
+recovery copy to validate this PR's exact artifact.

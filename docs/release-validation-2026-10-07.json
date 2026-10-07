@@ -108,6 +108,87 @@
     "socket_project_report": "SUCCESS",
     "socket_pull_request_alerts": "SUCCESS",
     "overlapping_pr_4": "CLOSED",
-    "main_updated": false
+    "main_updated": false,
+    "automated_review_on_reviewed_head": "Kilo SUCCESS; seven conditional comments verified and resolved with evidence"
+  },
+  "continuation": {
+    "reviewed_head": "2afb933c876446240323e792c88c5cb69d879fd6",
+    "review_threads_resolved": 10,
+    "human_approval": false,
+    "checks": [
+      {
+        "name": "tests",
+        "command": "npm test",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/continuation-tests.log",
+        "log_sha256": "79b2440fb3eb665a45632a0d8aa69e814ef6050f66a06d6d5a4e54c3ef3a4544"
+      },
+      {
+        "name": "staging_build",
+        "command": "npm run build:staging",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/staging-build.log",
+        "log_sha256": "ef7301e28508864d26cf3e7ec6f06ecc95cc03e75fb72b21084da68466830c6e"
+      },
+      {
+        "name": "staging_dry_run",
+        "command": "npm exec wrangler -- deploy --env staging --dry-run",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/staging-dry-run.log",
+        "log_sha256": "7161befd791564995dfe3592febe7a2d60a186067136bb0bed2101281eb5109c"
+      },
+      {
+        "name": "typecheck",
+        "command": "npm run typecheck",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/continuation-typecheck.log",
+        "log_sha256": "1ce89c1e2af042a647cce7023f6633662d99394e2002a62973684b04baa20f13"
+      },
+      {
+        "name": "audit",
+        "command": "npm audit --json",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/continuation-audit.json",
+        "log_sha256": "6dab57baaf12499b5edbed625735af5904dc4c1d70fb47ef8e2da1e7acbbc394"
+      },
+      {
+        "name": "production_build",
+        "command": "npm run build",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/continuation-production-build.log",
+        "log_sha256": "64f8cb4b6156e5f711ca2c8dffe0c023e45f20bf8c244fe6389fbd47e34f7340"
+      },
+      {
+        "name": "production_dry_run",
+        "command": "npm exec wrangler -- deploy --dry-run",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/continuation-production-dry-run.log",
+        "log_sha256": "539f71bd0490989f4f454b02ef74e1ca63d71afa243414b7c9e0e039350072e7"
+      }
+    ],
+    "tests_passed": 5,
+    "staging_config": {
+      "name": "nexus-emdash-staging",
+      "d1_name": "nexus-emdash-staging-db",
+      "r2_name": "nexus-emdash-staging-media",
+      "workers_dev": false,
+      "preview_urls": false,
+      "routes": []
+    },
+    "staging_artifact_config_sha256": "4e0370c809e9eeecb0e62fc95ad7741e2ed6ec13d5b173fa4d333aee08c84442",
+    "cloudflare_authentication": "Wrangler unauthenticated; OAuth launch timed out before authorization",
+    "cloudflare_remote_validation": "NOT RUN",
+    "resources_provisioned": false,
+    "staging_deployed": false,
+    "native_sharp_check": "0.35.5 create 2x2 RGBA -> resize 1x1 PNG succeeded",
+    "migration_manifest_sha256": "3e4a432a03413867f0cdcb6bb6a26bdfce53e5f223028fd23996f935e8c1de0a",
+    "source_files_sha256": {
+      "wrangler.jsonc": "50a2c61a965b45bf307c16d188ef3c928f2c8aebc1a840069c10a5133abdcd58",
+      "package.json": "d9546af8732f62094d7612c06d56c512915f65bab4c339825f4e256e835ce441",
+      "tests/staging-isolation.test.mjs": "bdbc3dbf50721c8c1203922073b53b99a08cbea21104763a4d8aef52f8a7be54",
+      ".github/workflows/validate.yml": "30d21131585908a4cca1115af6a3b03a155c0c5ee6c94b9cffa372a8a8a04e9b"
+    },
+    "production_artifact_restored": true,
+    "production_artifact_config_sha256": "04d5b39f21d280b7f882f66baa198535b88448f7fbc42cd97673bccdcd5cf342"
   }
 }

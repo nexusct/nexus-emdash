@@ -23,3 +23,5 @@ jobs:
       - run: npm run build
       - run: npm audit --audit-level=low
       - run: npx wrangler deploy --dry-run
+      - run: npm run build:staging
+      - run: npx wrangler deploy --env staging --dry-run

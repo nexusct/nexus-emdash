@@ -69,6 +69,11 @@ Read [the October 7 release assessment](docs/dependency-release-2026-10-07.md)
 before deploying this upgrade. It records the tested core/plugin versions,
 temporary dependency overrides, Socket investigation and Cloudflare release gates.
 
+The isolated staging environment uses separate D1/R2/session resources and starts
+with public entrypoints disabled. Follow [the staging runbook](docs/cloudflare-staging-2026-10-07.md)
+before using `npm run deploy:staging`. `npm run build:staging` plus
+`npx wrangler deploy --env staging --dry-run` validates packaging without deploying.
+
 ## See Also
 
 - [Node.js variant](../blog) -- same template using SQLite and local file storage
