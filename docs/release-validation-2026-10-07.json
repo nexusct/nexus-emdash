@@ -1,0 +1,323 @@
+{
+  "review_date": "2026-10-07",
+  "node": "v22.22.3",
+  "npm": "11.17.0",
+  "checks": [
+    {
+      "check": "clean_install",
+      "command": "npm ci --strict-peer-deps",
+      "exit_code": 0,
+      "elapsed_seconds": 29.83,
+      "log_sha256": "cfd24b0806d99a7ded3386b65284ba23de92b19920006c82dabee9d4a7f473a0"
+    },
+    {
+      "check": "dependency_graph",
+      "command": "npm ls --all",
+      "exit_code": 0,
+      "elapsed_seconds": 0.74,
+      "log_sha256": "64cc1fee9ada061ab4bbef97534011d53277312132dc8589a1bf5458a63821b5"
+    },
+    {
+      "check": "tests",
+      "command": "npm test",
+      "exit_code": 0,
+      "elapsed_seconds": 2.19,
+      "log_sha256": "15574a9121d00fcdaafd785d640cd5c138343df4d4dec2130a4c6b07fdb634dd"
+    },
+    {
+      "check": "seed",
+      "command": "npm exec emdash -- seed seed/seed.json --validate",
+      "exit_code": 0,
+      "elapsed_seconds": 1.27,
+      "log_sha256": "9516e0cee1425e2bd48e223ef6c7e6a07d469d97f9d6b5056ba4f9e6f5ec7e57"
+    },
+    {
+      "check": "typecheck",
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "elapsed_seconds": 15.74,
+      "log_sha256": "7b5c83e58314d7345aa15d50470a55f81658f35620f8c618015258a005b01c6b"
+    },
+    {
+      "check": "build",
+      "command": "npm run build",
+      "exit_code": 0,
+      "elapsed_seconds": 12.83,
+      "log_sha256": "f8c3c796f1a8358135b40e07cf1267655296aa8ed28d9b75f34e7dce257d1bca"
+    },
+    {
+      "check": "audit",
+      "command": "npm audit --json",
+      "exit_code": 0,
+      "elapsed_seconds": 0.81,
+      "log_sha256": "6dab57baaf12499b5edbed625735af5904dc4c1d70fb47ef8e2da1e7acbbc394"
+    },
+    {
+      "check": "signatures",
+      "command": "npm audit signatures",
+      "exit_code": 0,
+      "elapsed_seconds": 5.59,
+      "log_sha256": "cd936019617415c01363329243f018592b1cd2644204cd3cc77b58a368651803"
+    },
+    {
+      "check": "wrangler_dry_run",
+      "command": "npm exec wrangler -- deploy --dry-run",
+      "exit_code": 0,
+      "elapsed_seconds": 1.9,
+      "log_sha256": "539f71bd0490989f4f454b02ef74e1ca63d71afa243414b7c9e0e039350072e7"
+    },
+    {
+      "check": "staged_secret_scan",
+      "command": "gitleaks git --pre-commit --staged --redact --no-banner",
+      "exit_code": 0,
+      "log_sha256": "b024940d905e9d605cbcd05d2acf7e99aaff3b5ea70809be66b30bac7654cdd9"
+    }
+  ],
+  "lockfile_sha256": "bb77f76431d338a3253d6157eedfb0dcc2059312b5c18baa9b46a096268fe77b",
+  "audit_vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "local_preview": {
+    "home_status": 200,
+    "admin_redirect_target": "/_emdash/admin/setup",
+    "admin_setup_status": 200,
+    "limit": "No admin session or real Cloudflare service was validated."
+  },
+  "production_deployed": false,
+  "optional_diagnostics": [
+    {
+      "command": "npm exec emdash -- doctor",
+      "exit_code": 1,
+      "reason": "Doctor defaults to local data.db; this Cloudflare D1 project has no standalone SQLite file. Remote D1 health was not validated."
+    },
+    {
+      "command": "gitleaks dir . --redact",
+      "exit_code": 1,
+      "reason": "Generated ignored dist/server artifact contains an Astro per-build server-island encryption key. It is not staged or committed; the staged-source scan passed without suppression."
+    }
+  ],
+  "github": {
+    "repository_actions_enabled": false,
+    "repository_ci_ran": false,
+    "source_commit": "7b2838130c848e6c7f47ecbe695cf78ad40f2945",
+    "socket_project_report": "SUCCESS",
+    "socket_pull_request_alerts": "SUCCESS",
+    "overlapping_pr_4": "CLOSED",
+    "main_updated": false,
+    "automated_review_on_reviewed_head": "Kilo SUCCESS; seven conditional comments verified and resolved with evidence"
+  },
+  "continuation": {
+    "reviewed_head": "2afb933c876446240323e792c88c5cb69d879fd6",
+    "review_threads_resolved": 10,
+    "human_approval": false,
+    "checks": [
+      {
+        "name": "tests",
+        "command": "npm test",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/continuation-tests.log",
+        "log_sha256": "79b2440fb3eb665a45632a0d8aa69e814ef6050f66a06d6d5a4e54c3ef3a4544"
+      },
+      {
+        "name": "staging_build",
+        "command": "npm run build:staging",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/staging-build.log",
+        "log_sha256": "ef7301e28508864d26cf3e7ec6f06ecc95cc03e75fb72b21084da68466830c6e"
+      },
+      {
+        "name": "staging_dry_run",
+        "command": "npm exec wrangler -- deploy --env staging --dry-run",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/staging-dry-run.log",
+        "log_sha256": "7161befd791564995dfe3592febe7a2d60a186067136bb0bed2101281eb5109c"
+      },
+      {
+        "name": "typecheck",
+        "command": "npm run typecheck",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/continuation-typecheck.log",
+        "log_sha256": "1ce89c1e2af042a647cce7023f6633662d99394e2002a62973684b04baa20f13"
+      },
+      {
+        "name": "audit",
+        "command": "npm audit --json",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/continuation-audit.json",
+        "log_sha256": "6dab57baaf12499b5edbed625735af5904dc4c1d70fb47ef8e2da1e7acbbc394"
+      },
+      {
+        "name": "production_build",
+        "command": "npm run build",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/continuation-production-build.log",
+        "log_sha256": "64f8cb4b6156e5f711ca2c8dffe0c023e45f20bf8c244fe6389fbd47e34f7340"
+      },
+      {
+        "name": "production_dry_run",
+        "command": "npm exec wrangler -- deploy --dry-run",
+        "exit_code": 0,
+        "log_path": "/tmp/nexus-emdash-validation-20261007/continuation-production-dry-run.log",
+        "log_sha256": "539f71bd0490989f4f454b02ef74e1ca63d71afa243414b7c9e0e039350072e7"
+      }
+    ],
+    "tests_passed": 5,
+    "staging_config": {
+      "name": "nexus-emdash-staging",
+      "d1_name": "nexus-emdash-staging-db",
+      "r2_name": "nexus-emdash-staging-media",
+      "workers_dev": false,
+      "preview_urls": false,
+      "routes": []
+    },
+    "staging_artifact_config_sha256": "4e0370c809e9eeecb0e62fc95ad7741e2ed6ec13d5b173fa4d333aee08c84442",
+    "cloudflare_authentication": "Wrangler unauthenticated; OAuth launch timed out before authorization",
+    "cloudflare_remote_validation": "NOT RUN",
+    "resources_provisioned": false,
+    "staging_deployed": false,
+    "native_sharp_check": "0.35.5 create 2x2 RGBA -> resize 1x1 PNG succeeded",
+    "migration_manifest_sha256": "3e4a432a03413867f0cdcb6bb6a26bdfce53e5f223028fd23996f935e8c1de0a",
+    "source_files_sha256": {
+      "wrangler.jsonc": "50a2c61a965b45bf307c16d188ef3c928f2c8aebc1a840069c10a5133abdcd58",
+      "package.json": "d9546af8732f62094d7612c06d56c512915f65bab4c339825f4e256e835ce441",
+      "tests/staging-isolation.test.mjs": "bdbc3dbf50721c8c1203922073b53b99a08cbea21104763a4d8aef52f8a7be54",
+      ".github/workflows/validate.yml": "30d21131585908a4cca1115af6a3b03a155c0c5ee6c94b9cffa372a8a8a04e9b"
+    },
+    "production_artifact_restored": true,
+    "production_artifact_config_sha256": "04d5b39f21d280b7f882f66baa198535b88448f7fbc42cd97673bccdcd5cf342"
+  },
+  "refresh": {
+    "checked_at": "2026-10-07T21:02:33.944382+00:00",
+    "source_head": "2862c0408e0050da0c792b1bbfcc4d81a07ec592",
+    "lockfile_sha256": "bb77f76431d338a3253d6157eedfb0dcc2059312b5c18baa9b46a096268fe77b",
+    "checks": [
+      {
+        "name": "tests",
+        "command": [
+          "npm",
+          "test"
+        ],
+        "exit_code": 0,
+        "tests_passed": 5,
+        "tests_failed": 0
+      },
+      {
+        "name": "typecheck",
+        "command": [
+          "npm",
+          "run",
+          "typecheck"
+        ],
+        "exit_code": 0,
+        "files": 17,
+        "errors": 0,
+        "warnings": 0,
+        "hints": 0
+      },
+      {
+        "name": "audit",
+        "command": [
+          "npm",
+          "audit",
+          "--json"
+        ],
+        "exit_code": 0,
+        "vulnerabilities": 0
+      },
+      {
+        "name": "dependency-tree",
+        "command": [
+          "npm",
+          "ls",
+          "--all"
+        ],
+        "started_at": "2026-10-07T21:01:10.959732+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/dependency-tree.log",
+        "sha256": "64cc1fee9ada061ab4bbef97534011d53277312132dc8589a1bf5458a63821b5"
+      },
+      {
+        "name": "seed",
+        "command": [
+          "npx",
+          "emdash",
+          "seed",
+          "seed/seed.json",
+          "--validate"
+        ],
+        "started_at": "2026-10-07T21:01:11.630896+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/seed.log",
+        "sha256": "73f37373addea8459e277c45c17ea1381fff8743a6926cd714150cb9e93a1b03"
+      },
+      {
+        "name": "staging-build",
+        "command": [
+          "npm",
+          "run",
+          "build:staging"
+        ],
+        "started_at": "2026-10-07T21:01:12.657571+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/staging-build.log",
+        "sha256": "2259da249fc9b5d0156d99a5f7e4239d969d521ef8080eb75226c647be9ddb68"
+      },
+      {
+        "name": "staging-package",
+        "command": [
+          "npx",
+          "wrangler",
+          "deploy",
+          "--env",
+          "staging",
+          "--dry-run"
+        ],
+        "started_at": "2026-10-07T21:01:20.730654+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/staging-package.log",
+        "sha256": "e98db4ea0b83e989f4b35cd3232604d1ddc42af4bb1d32d78f9e92a04543bfe5"
+      },
+      {
+        "name": "production-build",
+        "command": [
+          "npm",
+          "run",
+          "build"
+        ],
+        "started_at": "2026-10-07T21:01:22.452871+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/production-build.log",
+        "sha256": "2c1b1455ecbf1ec667143fd7960560a5ec7cee3da01937e41494e30cb62c8771"
+      },
+      {
+        "name": "production-package",
+        "command": [
+          "npx",
+          "wrangler",
+          "deploy",
+          "--dry-run"
+        ],
+        "started_at": "2026-10-07T21:01:33.911236+00:00",
+        "exit_code": 0,
+        "log": "/tmp/nexus-emdash-refresh-20261007/production-package.log",
+        "sha256": "dbf727c3aa12dedb792c7d603694d7e92b9963c87c200ba99dd1b0a34c036847"
+      }
+    ],
+    "github_checks_on_source_head": {
+      "Kilo Code Reviewer": "SUCCESS",
+      "Socket Security: Project Report": "SUCCESS",
+      "Socket Security: Pull Request Alerts": "SUCCESS"
+    },
+    "dependency_pins_changed": false,
+    "build_advisory": "Existing large client-chunk warning; builds and packaging pass. No warning suppression added.",
+    "production_artifact_restored": true,
+    "cloudflare_authentication": "Browser signed in; Wrangler device authorization awaits approval",
+    "cloudflare_remote_validation": "NOT RUN",
+    "production_deployed": false
+  }
+}

@@ -47,18 +47,32 @@ A clean, minimal blog built with [EmDash](https://github.com/emdash-cms/emdash) 
 ## Local Development
 
 ```bash
-pnpm install
-pnpm bootstrap
-pnpm dev
+npm ci --strict-peer-deps
+npm run dev
 ```
 
 ## Deploying
 
 ```bash
-pnpm deploy
+npm run deploy
 ```
 
 Or click the deploy button above to set up the project in your Cloudflare account.
+
+## Dependency release validation
+
+Use Node.js 22.19 or later and the committed npm lockfile. Validate changes with
+`npm test`, `npm run typecheck`, `npm run build`, and `npm audit`. The repository
+workflow also checks the dependency graph, seed schema and Wrangler dry-run.
+
+Read [the October 7 release assessment](docs/dependency-release-2026-10-07.md)
+before deploying this upgrade. It records the tested core/plugin versions,
+temporary dependency overrides, Socket investigation and Cloudflare release gates.
+
+The isolated staging environment uses separate D1/R2/session resources and starts
+with public entrypoints disabled. Follow [the staging runbook](docs/cloudflare-staging-2026-10-07.md)
+before using `npm run deploy:staging`. `npm run build:staging` plus
+`npx wrangler deploy --env staging --dry-run` validates packaging without deploying.
 
 ## See Also
 
