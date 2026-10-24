@@ -65,7 +65,7 @@ Use Node.js 22.19 or later and the committed npm lockfile. Validate changes with
 `npm test`, `npm run typecheck`, `npm run build`, and `npm audit`. The repository
 workflow also checks the dependency graph, seed schema and Wrangler dry-run.
 
-Read [the October 7 release assessment](docs/dependency-release-2026-10-07.md)
+Read [the October 24 release assessment](docs/dependency-release-2026-10-24.md)
 before deploying this upgrade. It records the tested core/plugin versions,
 temporary dependency overrides, Socket investigation and Cloudflare release gates.
 

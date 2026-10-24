@@ -10,6 +10,8 @@ test("staging resolves to isolated storage with public entrypoints disabled", ()
 	assert.equal(staging.workers_dev, false);
 	assert.equal(staging.preview_urls, false);
 	assert.deepEqual(staging.routes, []);
+	assert.ok(production.compatibility_flags.includes("enable_ctx_exports"));
+	assert.ok(staging.compatibility_flags.includes("enable_ctx_exports"));
 	assert.equal(staging.d1_databases.length, 1);
 	assert.equal(staging.d1_databases[0].binding, "DB");
 	assert.equal(staging.d1_databases[0].database_name, "nexus-emdash-staging-db");

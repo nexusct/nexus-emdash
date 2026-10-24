@@ -1,8 +1,13 @@
 # Isolated Cloudflare staging — October 7, 2026
 
-**Prepared and checked locally; not deployed.** Wrangler has no authenticated
-Cloudflare account in this session. The OAuth sign-in attempt timed out before
-authorization. No remote database, bucket, Worker or Access policy was changed.
+**October 24 update: authenticated and deployed privately.** Wrangler identifies
+`jmazza@nexusct.com` and account `d63153d02b780bdffffbcfb60808d602`. The isolated
+staging D1, R2 and SESSION resources exist, and the staging Worker has no public
+route, workers.dev entrypoint or preview URL. A private service proxy verified
+the deployed homepage, setup page and unauthenticated API rejection. See the
+[current release assessment](dependency-release-2026-10-24.md) for exact versions,
+remote identifiers, checks and remaining release gates. No production Worker or
+production storage was changed.
 
 The `staging` environment in `wrangler.jsonc` selects `nexus-emdash-staging`,
 `nexus-emdash-staging-db`, and `nexus-emdash-staging-media`. It explicitly declares
@@ -33,11 +38,15 @@ If the browser callback times out, finish signing in at
 `https://dash.cloudflare.com/login` before starting a fresh device attempt:
 
 ```bash
-npx wrangler login --use-keyring --device --browser=false --scopes account:read user:read workers:write workers_kv:write workers_scripts:write workers_tail:read d1:write
+npx wrangler login --use-keyring --device --browser=true --scopes account:read user:read workers:write workers_kv:write workers_scripts:write workers_tail:read d1:write
 ```
 
-Open the verification URL printed by Wrangler, enter the **fresh** terminal
-code in the page's code field, continue, and review the displayed permissions.
+This opens the complete verification URL in the default browser with the fresh
+code already supplied. Finish account sign-in in that browser before starting
+the five-minute request; an in-app browser and Safari can have different login
+sessions. Review the displayed account and permissions, then authorize Wrangler.
+If automatic opening is unavailable, use `--browser=false`, open the printed
+verification URL and enter the **fresh** terminal code in its code field.
 The code expires after five minutes; a signed-in dashboard alone does not
 authenticate Wrangler. Do not reuse an expired code. Confirm the terminal reports
 successful authorization and `wrangler whoami` identifies the intended account
@@ -127,6 +136,25 @@ the final PR scan and review state. Repository Actions remains disabled, so
 local receipts are separate from GitHub CI. Production remains **NO-GO** until
 recovery, populated upgrade rehearsal, binding/startup and authenticated/plugin
 workflow gates pass.
+
+### Recorded staging resources and diagnostics
+
+The verified staging D1 ID is `4492e8b9-59ed-49fc-924a-784c713e944b`; the SESSION
+namespace ID is `1f98f368e7c049b18a1060873d3cd2ad`. Both are committed only under
+`env.staging`. The R2 bucket is `nexus-emdash-staging-media`. Reuse these resources
+rather than creating duplicate databases or namespaces. The migration ledger
+records 90 migrations after the first private requests; the database started
+empty, so this establishes fresh installation rather than a populated upgrade.
+
+`wrangler dev --remote` requires a staging build containing the SESSION ID and
+`--upstream-protocol=https`. It reported a missing `PluginBridge` loopback even
+though the built entrypoint exports the class. Enabling `enable_ctx_exports`
+explicitly did not remove this development-preview warning. A separate
+authenticated remote proxy bound only to the deployed staging Worker returned
+HTTP 200/302/200/401 for home/admin/setup/content API, with no exceptions in the
+matching deployed Worker tail. This does not prove sandbox webhook delivery.
+The temporary proxy and tail were stopped after testing. Keep public entrypoints
+disabled until a controlled hostname and Access policy are configured.
 
 Sources: [Astro environment selection](https://docs.astro.build/en/guides/integrations-guide/cloudflare/#changed-deploy-to-cloudflare-environment),
 [Wrangler environment binding rules](https://developers.cloudflare.com/workers/wrangler/environments/),

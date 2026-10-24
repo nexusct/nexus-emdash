@@ -1,5 +1,8 @@
 # Dependency and security release assessment — October 7, 2026
 
+Historical assessment. The [October 24 refresh](dependency-release-2026-10-24.md)
+supersedes the version selection, audit result and Cloudflare status below.
+
 **GO for repository review and an isolated Cloudflare staging validation. NO-GO for production promotion until the Cloudflare gates below pass.** No remote Worker was uploaded, deployed or promoted, and no production database was read or changed.
 
 ## Consolidated dependency set
