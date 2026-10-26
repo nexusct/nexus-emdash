@@ -1,0 +1,275 @@
+{
+  "review_date": "2026-10-24",
+  "source_base": "dbf87d9f76be6e9e47b54b5f58430c2f5d3a8527",
+  "node": "v24.22.1",
+  "lockfile_sha256": "2229a29eca334499150c6ac39779303b201212266a01a1d32ae40c5cba0275a3",
+  "checks": [
+    {
+      "check": "clean_install",
+      "command": "npm ci --strict-peer-deps --no-audit",
+      "exit_code": 0,
+      "elapsed_seconds": 79.89,
+      "log_sha256": "c7cbef4b3c0c53996230b98c12e8f17ee41acb45bd624485a60f7da7432f39e0"
+    },
+    {
+      "check": "dependency_graph",
+      "command": "npm ls --all",
+      "exit_code": 0,
+      "elapsed_seconds": 2.89,
+      "log_sha256": "f02cdef40f551ef89f98f1da29d338f85870700e8e2663a30e5e09188a69f288"
+    },
+    {
+      "check": "tests",
+      "command": "npm test",
+      "exit_code": 0,
+      "elapsed_seconds": 4.02,
+      "log_sha256": "62e4adb42d075c4937c6cf5df06bedbe05f4cb495aba8ead2660b2d1a1e80f40"
+    },
+    {
+      "check": "seed",
+      "command": "npm exec emdash -- seed seed/seed.json --validate",
+      "exit_code": 0,
+      "elapsed_seconds": 2.37,
+      "log_sha256": "c4453f02a27d59c858a5072bcb5f065be986f1b573f9351eb4f95385f6498263"
+    },
+    {
+      "check": "typecheck",
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "elapsed_seconds": 38.89,
+      "log_sha256": "87dec4cdeda2f7e21c67e349ee924099251a9c667aef837b8d9c0011b109abe1"
+    },
+    {
+      "check": "production_build",
+      "command": "npm run build",
+      "exit_code": 0,
+      "elapsed_seconds": 36.2,
+      "log_sha256": "8cd66a0015399eb427fbed9434d456e96dfb6b7514820a77edff8122eabc0379"
+    },
+    {
+      "check": "production_dry_run",
+      "command": "npm exec wrangler -- deploy --dry-run",
+      "exit_code": 0,
+      "elapsed_seconds": 4.76,
+      "log_sha256": "55654771dcafb736d3473c1784acb4894520c40fb0d4c238e1061bb63424d369"
+    },
+    {
+      "check": "staging_build",
+      "command": "npm run build:staging",
+      "exit_code": 0,
+      "elapsed_seconds": 22.5,
+      "log_sha256": "a5d42fb5491f90031a5bda56b297df18818a6f945b8117e1af3e823ffc66e3ab"
+    },
+    {
+      "check": "staging_dry_run",
+      "command": "npm exec wrangler -- deploy --env staging --dry-run",
+      "exit_code": 0,
+      "elapsed_seconds": 5.71,
+      "log_sha256": "07a3c94f2152dc1baae9016adaaa2d200553d32f96a54950e4ac493547a1c4fb"
+    },
+    {
+      "check": "audit",
+      "command": "npm audit --json",
+      "exit_code": 0,
+      "elapsed_seconds": 1.68,
+      "log_sha256": "8128676f5cc612805f84bf4d80bcc085b4ba391ecddb45844f9a8a3e9036f6e2"
+    },
+    {
+      "check": "signatures",
+      "command": "npm audit signatures",
+      "exit_code": 0,
+      "elapsed_seconds": 20.24,
+      "log_sha256": "f829eb0b34a7a3f5f1c2813a279e91963da8f628cfa8928e5960578368614334"
+    },
+    {
+      "check": "final_config_tests",
+      "command": "npm test",
+      "exit_code": 0,
+      "elapsed_seconds": 3.24,
+      "log_sha256": "2d24de6b6a5da7b59d6ec8d02479b57b81e5bcbb334cf3403ae2f920a781f475"
+    },
+    {
+      "check": "final_staging_build",
+      "command": "npm run build:staging",
+      "exit_code": 0,
+      "elapsed_seconds": 14.68,
+      "log_sha256": "69dc57cabac8fa570644b07bc789ec3526c8868d1b631ce437348207d4f073ff"
+    },
+    {
+      "check": "final_staging_dry_run",
+      "command": "npm exec wrangler -- deploy --env staging --dry-run",
+      "exit_code": 0,
+      "elapsed_seconds": 3.75,
+      "log_sha256": "bb846a0777bf06256f1d0647a6808a000c5dd7af238af61068d4d80c776ddf5d"
+    },
+    {
+      "check": "final_loopback_tests",
+      "command": "npm test",
+      "exit_code": 0,
+      "elapsed_seconds": 3.41,
+      "log_sha256": "4722576622ba4189a6de4f7897047e8f52de5b4ca55729d0e589f426bb9feca4"
+    },
+    {
+      "check": "restored_production_build",
+      "command": "npm run build",
+      "exit_code": 0,
+      "elapsed_seconds": 13.21,
+      "log_sha256": "55fbf6de24771346c319e49ec0537d261766761009ee5ac1d99ff03da49cf540"
+    },
+    {
+      "check": "final_production_dry_run",
+      "command": "npm exec wrangler -- deploy --dry-run",
+      "exit_code": 0,
+      "elapsed_seconds": 2.96,
+      "log_sha256": "94ddee174a864d60190d486d02eedced2be61b93430e014dc2cc3f958a194445"
+    },
+    {
+      "check": "loopback_staging_build",
+      "command": "npm run build:staging",
+      "exit_code": 0,
+      "log_sha256": "b54603b71d5739a47e54b5b948850c18990d026ed8c50c26a1a2c3a5e32947a1"
+    }
+  ],
+  "audit_vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "npm": "12.2.0",
+  "initial_audit_2026_10_24": {
+    "critical": 1,
+    "high": 9,
+    "moderate": 7,
+    "total_affected_packages": 17
+  },
+  "signatures": {
+    "verified_packages": 737,
+    "verified_attestations": 292
+  },
+  "source_file_sha256": {
+    "package.json": "05f8c3d37743b2f7afed6cdc49b0451e304be38d5468ccd76e40394c5e0d2d7d",
+    "package-lock.json": "2229a29eca334499150c6ac39779303b201212266a01a1d32ae40c5cba0275a3",
+    "wrangler.jsonc": "370e19a8ec3340829f337253774e50f7e9bd567f53c383a77b147c2e812c7346",
+    "astro.config.mjs": "e136152f80dc2b754defb3fc2e2f77fea0ff5172045ee2ea8d7833f6b213af21",
+    "src/worker.ts": "ea5c957b038b685cc7dff0bb8ee0d16d73dc0ddd5ea49f5cef9a1775c929c7c0",
+    "tests/plugin-compatibility.test.mjs": "07ff0b96a7c138b224d79311140f7f3cd63beb719b6e946c2ed6b53ab880345b",
+    "tests/staging-isolation.test.mjs": "c38ec628554d14316f33ce5d48837c8f9eee33f258bf7eb53c5315fa5ff7a368",
+    "tests/validation-security.test.mjs": "ec6eb372ecc43b5976024fc311a035014410e9ccd6fcafb8b7a3c4ba77b2200f"
+  },
+  "cloudflare": {
+    "account_id": "d63153d02b780bdffffbcfb60808d602",
+    "authentication_verified": true,
+    "credential_storage": "Encrypted file with key in macOS Keychain",
+    "production_worker_inventory": {
+      "name": "nexus-emdash",
+      "result": "API 10007: Worker does not exist on this account"
+    },
+    "production_d1_inventory": {
+      "id": "2bc4951e-66c9-4d48-b4fa-ee7681750451",
+      "num_tables": 0
+    },
+    "production_storage_mutated": false,
+    "staging_worker": "nexus-emdash-staging",
+    "staging_version": "2d282d0a-dc39-4334-80c7-290d3b507f6d",
+    "staging_d1_id": "4492e8b9-59ed-49fc-924a-784c713e944b",
+    "staging_bucket": "nexus-emdash-staging-media",
+    "staging_session_kv_id": "1f98f368e7c049b18a1060873d3cd2ad",
+    "startup_ms": 98,
+    "public_entrypoints_enabled": false,
+    "staging_num_tables": 85,
+    "staging_recorded_migrations": 90,
+    "staging_uploaded": true,
+    "fresh_install_only": true,
+    "deployed_smoke": [
+      {
+        "path": "/",
+        "status": 200,
+        "location": null,
+        "bytes": 13830,
+        "title": "My Blog"
+      },
+      {
+        "path": "/_emdash/admin",
+        "status": 302,
+        "location": "/_emdash/admin/setup",
+        "bytes": 0,
+        "title": null
+      },
+      {
+        "path": "/_emdash/admin/setup",
+        "status": 200,
+        "location": null,
+        "bytes": 300682,
+        "title": "EmDash Admin"
+      },
+      {
+        "path": "/_emdash/api/content/posts",
+        "status": 401,
+        "location": null,
+        "bytes": 84,
+        "title": null
+      }
+    ],
+    "deployed_tail": [
+      {
+        "worker": "nexus-emdash-staging",
+        "version": "2d282d0a-dc39-4334-80c7-290d3b507f6d",
+        "path": "/_emdash/admin",
+        "status": 302,
+        "outcome": "ok",
+        "exceptions": [],
+        "messages": []
+      },
+      {
+        "worker": "nexus-emdash-staging",
+        "version": "2d282d0a-dc39-4334-80c7-290d3b507f6d",
+        "path": "/",
+        "status": 200,
+        "outcome": "ok",
+        "exceptions": [],
+        "messages": [
+          [
+            "13:26:45 [WARN] [cache] `cache.set()` was called but caching is not enabled. Configure a cache provider in your Astro config under `cache` to enable caching."
+          ]
+        ]
+      },
+      {
+        "worker": "nexus-emdash-staging",
+        "version": "2d282d0a-dc39-4334-80c7-290d3b507f6d",
+        "path": "/_emdash/admin/setup",
+        "status": 200,
+        "outcome": "ok",
+        "exceptions": [],
+        "messages": []
+      },
+      {
+        "worker": "nexus-emdash-staging",
+        "version": "2d282d0a-dc39-4334-80c7-290d3b507f6d",
+        "path": "/_emdash/api/content/posts",
+        "status": 401,
+        "outcome": "ok",
+        "exceptions": [],
+        "messages": []
+      }
+    ],
+    "development_preview_warning": "PluginBridge unavailable, despite exported class; enable_ctx_exports did not remove warning",
+    "real_sandbox_webhook_delivery_verified": false,
+    "admin_sign_in_verified": false,
+    "r2_upload_read_verified": false,
+    "populated_upgrade_recovery_verified": false,
+    "temporary_proxy_stopped": true,
+    "tail_stopped": true,
+    "upload_log_sha256": "1dc77bedb9148e3b33a4fef5c7fa50ae688156a17d1ff6d588e51628a9347a18"
+  },
+  "production_deployed": false,
+  "github_actions_enabled": false,
+  "decision": {
+    "repository_review": "GO",
+    "private_staging_validation": "GO to continue",
+    "production_release": "NO-GO pending access/admin, upgrade/recovery and plugin workflows"
+  },
+  "default_artifact_environment": "production"
+}

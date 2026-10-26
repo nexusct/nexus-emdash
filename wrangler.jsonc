@@ -4,7 +4,8 @@
 	"main": "./src/worker.ts",
 	"compatibility_date": "2026-03-29",
 	"compatibility_flags": [
-		"nodejs_compat"
+		"nodejs_compat",
+		"enable_ctx_exports"
 	],
 	"d1_databases": [
 		{
@@ -27,4 +28,30 @@
 			"binding": "LOADER",
 		},
 	],
+	"env": {
+		"staging": {
+			"name": "nexus-emdash-staging",
+			// Keep the first deployment private until Cloudflare Access is configured.
+			"workers_dev": false,
+			"preview_urls": false,
+			"routes": [],
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "nexus-emdash-staging-db",
+					"database_id": "4492e8b9-59ed-49fc-924a-784c713e944b",
+					// Isolated staging database; never use the production UUID here.
+				},
+			],
+			"r2_buckets": [
+				{
+					"binding": "MEDIA",
+					"bucket_name": "nexus-emdash-staging-media",
+					"preview_bucket_name": "nexus-emdash-staging-media",
+				},
+			],
+			"kv_namespaces": [{ "binding": "SESSION", "id": "1f98f368e7c049b18a1060873d3cd2ad" }],
+			"worker_loaders": [{ "binding": "LOADER" }],
+		},
+	},
 }
