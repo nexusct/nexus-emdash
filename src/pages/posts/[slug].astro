@@ -111,7 +111,7 @@ const publishDate =
 		{/* Hero: Full-width featured image */}
 		{
 			post.data.featured_image && (
-				<div class="article-hero" {...post.edit.featured_image}>
+				<div class="article-hero">
 					<Image image={post.data.featured_image} />
 				</div>
 			)
@@ -210,7 +210,7 @@ const publishDate =
 						}
 						<span>{readingTime} min read</span>
 					</div>
-					<h1 class="article-title" {...post.edit.title}>{post.data.title}</h1>
+					<h1 class="article-title">{post.data.title}</h1>
 					{
 						post.data.excerpt && (
 							<p class="article-excerpt">{post.data.excerpt}</p>
