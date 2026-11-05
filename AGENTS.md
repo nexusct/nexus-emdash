@@ -3,12 +3,18 @@ This is an EmDash site -- a CMS built on Astro with a full admin UI.
 ## Commands
 
 ```bash
-npm run dev          # Start Astro with the configured Cloudflare adapters
+npm ci --strict-peer-deps   # Install from package-lock.json (Node >=22.19)
+npm run dev -- --host 0.0.0.0 --port 4321
 npx emdash types      # Regenerate TypeScript types from schema
 npx emdash seed seed/seed.json --validate  # Validate seed file
+npm test
+npm run typecheck
+npm run build
 ```
 
-The admin UI is at `http://localhost:4321/_emdash/admin`.
+The site is at `http://localhost:4321`. The admin UI is at `http://localhost:4321/_emdash/admin`.
+
+Local D1 and R2 are provided by the Cloudflare adapter, so local development does not need a Cloudflare login. On a fresh database, `/_emdash/admin` redirects to setup. `http://localhost:4321/_emdash/api/setup/dev-bypass?redirect=/_emdash/admin` signs in a local dev admin.
 
 ## Key Files
 
