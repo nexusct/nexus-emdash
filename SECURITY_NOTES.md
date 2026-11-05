@@ -17,13 +17,13 @@ This document tracks security findings and remediation steps taken during the se
 - **2026-08-15**: Security review confirmed no keys remain in current tree
 
 **Current Status**: 
-- ✅ No API keys in current codebase
+- ✅ No API keys in current codebase (the key value itself must never be written into this repo, including in documentation)
 - ✅ Key was rotated after exposure (confirmed in SECURITY.md)
 - ✅ Pre-commit hooks prevent future commits
 - ⚠️ Key remains visible in git history (commits prior to removal)
 
 **Recommendations**:
-1. **IMPORTANT**: Owner should verify the exposed key (`AIzaSyAd72xUaF049-dbkwTAfSvsjQhmp9YLDpk`) has been rotated in the Google Cloud Console
+1. **IMPORTANT**: Owner should verify the exposed Google Maps API key (the one referenced in incident NCT-SEC-2026-04-19-001) has been rotated in the Google Cloud Console. Identify it from the incident report or the Cloud Console credentials list — do not copy the value into this repo.
 2. Consider using BFG Repo-Cleaner or `git filter-repo` to remove the key from history if this repo becomes public
 3. Ensure API key restrictions are properly configured (HTTP referrer restrictions, API quotas, etc.)
 
@@ -41,28 +41,21 @@ This document tracks security findings and remediation steps taken during the se
 
 **Trade-off**: Admin users can no longer use EmDash's visual editing click-to-edit feature on these elements. They must use the admin panel instead.
 
-### 3. Dependency Vulnerabilities (PARTIALLY FIXED)
+### 3. Dependency Vulnerabilities (FIXED)
 
-**Status**: Astro and transitive dependencies updated; EmDash core vulnerabilities remain
+**Status**: All advisories below resolved as of PR #3 (`npm audit` reports zero vulnerabilities)
 
 **Updates made**:
-- ✅ `astro`: `^6.1.2` → `^7.2.2` (fixes GHSA-f48w-9m4c-m7f5, GHSA-7pw4-f3q4-r2p2, GHSA-4g3v-8h47-v7g6)
+- ✅ `astro`: `^6.1.2` → `7.3.8` (fixes GHSA-f48w-9m4c-m7f5, GHSA-7pw4-f3q4-r2p2, GHSA-4g3v-8h47-v7g6)
 - ✅ `esbuild`: Updated transitively (fixes GHSA-g7r4-m6w7-qqqr - Windows path traversal)
 - ✅ `sharp`: Updated transitively (fixes CVE-2026-33327, CVE-2026-33328, CVE-2026-35590, CVE-2026-35591)
+- ✅ `emdash` / `@emdash-cms/cloudflare`: `^0.1.0` → `1.3.1`, which pulls patched `image-size` (GHSA-w3rx-r6r6-pgpr, GHSA-5p2g-fcmc-qvqq - DoS via infinite loops in ICNS, JXL, HEIF parsers) and patched `kysely` via `@emdash-cms/auth` (GHSA-wmrf-hv6w-mr66, GHSA-8cpq-38p9-67gx, GHSA-pv5w-4p9q-p3v2 - SQL injection)
 
-**Remaining issues (upstream dependencies)**:
-- ⚠️ `image-size` (via `emdash`): GHSA-w3rx-r6r6-pgpr, GHSA-5p2g-fcmc-qvqq - DoS via infinite loops in ICNS, JXL, HEIF parsers
-- ⚠️ `kysely` (via `@emdash-cms/auth`): GHSA-wmrf-hv6w-mr66, GHSA-8cpq-38p9-67gx, GHSA-pv5w-4p9q-p3v2 - SQL injection vulnerabilities
-
-**Note**: The `emdash` package and its plugins are third-party dependencies maintained by the EmDash CMS project. These vulnerabilities should be reported to the EmDash team. For this project:
-1. The `image-size` DoS issues only affect image upload processing in the admin panel (not public-facing)
-2. The `kysely` SQL injection issues require specific unsafe usage patterns that EmDash's wrapper may already guard against
-3. **Risk assessment**: LOW for typical blog usage; MODERATE if admin panel is exposed to untrusted users
+See `docs/dependency-release-2026-10-24.md` for the full dependency set and override rationale.
 
 **Recommendations**:
 1. Monitor EmDash releases for security updates
-2. Report vulnerabilities to EmDash maintainers: https://github.com/emdash-cms/emdash/security
-3. Consider restricting admin panel access to trusted networks only
+2. Consider restricting admin panel access to trusted networks only
 
 ### 4. Authentication & Authorization Review (NO ISSUES FOUND)
 
